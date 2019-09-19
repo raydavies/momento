@@ -1,12 +1,14 @@
 import { applyMiddleware, compose, createStore } from 'redux'
 import { createBrowserHistory } from 'history'
 import { fromJS } from 'immutable'
-import { routerMiddleware } from 'react-router-redux'
+import { routerMiddleware } from 'connected-react-router/immutable'
 import thunk from 'redux-thunk'
 
-const buildStore = (rootReducer, initialState = fromJS({})) => {
-  const history = createBrowserHistory()
+import createRootReducer from './rootReducer'
 
+export const history = createBrowserHistory()
+
+const configureStore = (initialState = {}) => {
   const composeEnhancers =
     typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
       ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
@@ -14,7 +16,7 @@ const buildStore = (rootReducer, initialState = fromJS({})) => {
 
   const enhancer = composeEnhancers(applyMiddleware(thunk, routerMiddleware(history)))
 
-  return createStore(rootReducer, initialState, enhancer)
+  return createStore(createRootReducer(history), fromJS(initialState), enhancer)
 }
 
-export { buildStore }
+export default configureStore
