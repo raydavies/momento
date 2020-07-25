@@ -18,7 +18,7 @@
         "laravel-mix-alias": "^1.0.2",
         "less": "^3.9.0",
         "less-loader": "^4.1.0",
-        "lodash": "^4.17.13",
+        "lodash": "^4.17.19",
         "react": "^16.4.0",
         "react-dom": "^16.2.0",
         "react-redux": "^7.1.1",
