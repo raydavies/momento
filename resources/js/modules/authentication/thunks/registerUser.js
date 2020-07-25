@@ -10,7 +10,7 @@ const registerUser = user => dispatch => {
       headers: {
         'Content-Type': 'application/json',
       },
-      url: `${config.api.url}/register`,
+      url: `${config.api.url}/api/register`,
       body: JSON.stringify(user),
     })
     .then(
